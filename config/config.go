@@ -1,0 +1,140 @@
+package config
+
+import (
+	"encoding/json"
+	"io/ioutil"
+	"fmt"
+	"os"
+	"regexp"
+	"github.com/zl/aibibi/utils"
+	"unicode/utf8"
+	"strings"
+)
+
+var jsonData map[string]interface{}
+
+func initJSON() {
+	bytes, err := ioutil.ReadFile("./config.json")
+	if err != nil {
+		fmt.Println("ReadFile: ", err.Error())
+		os.Exit(-1)
+	}
+
+	configStr := string(bytes[:])
+	reg := regexp.MustCompile(`/\*.*\*/`)
+
+	configStr = reg.ReplaceAllString(configStr, "")
+	bytes = []byte(configStr)
+
+	if err := json.Unmarshal(bytes, &jsonData); err != nil {
+		fmt.Println("invalid config: ", err.Error())
+		os.Exit(-1)
+	}
+}
+
+type dbConfig struct{
+	Dialect    string
+	Database   string
+	User       string
+	Password   string
+	Host       string
+	Port       int
+	Charset    string
+	URL        string
+	MaxIdleConns int
+	MaxOpenConns int
+}
+
+//mysql数据库相关配置
+var DBConfig dbConfig
+
+func initDB() {
+	utils.SetStructByJSON(&DBConfig, jsonData["database"].(map[string]interface{}))
+	url := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&parseTime=True&loc=Local",
+		DBConfig.User, DBConfig.Password, DBConfig.Host, DBConfig.Port, DBConfig.Database, DBConfig.Charset)
+	DBConfig.URL = url
+}
+
+type redisConfig struct{
+	Host			string
+	Port 		int
+	URL 			string
+	MaxIdle		int
+	MaxActive	int
+}
+
+// RedisConfig  redis相关配置
+var RedisConfig redisConfig
+
+func initRedis(){
+	utils.SetStructByJSON(&RedisConfig,jsonData["redis"].(map[string]interface{}))
+	url := fmt.Sprintf("%s:%d",RedisConfig.Host,RedisConfig.Port)
+	RedisConfig.URL = url
+}
+
+
+type serverConfig struct{
+	APIPoweredBy			string
+	SiteName 			string
+	Host 				string
+	ImgHsot				string
+	Env					string
+	LogDir				string
+	LogFile				string
+	APIPrefix			string
+	UploadImgDir			string
+	ImgPath				string
+	MaxMultipartMemory	int
+	Port					int
+	TokenSecret			string
+	TokenMaxAge			int
+	PassSalt				string
+	CrawlerName 			string
+	MailUser 			string //域名邮箱账号
+	MailPass				string //域名邮箱密码
+	MailHost				int	  //smtp邮箱域名
+	MailPort 			int	  //smtp邮箱端口
+	MailForm				string//邮件来源
+
+}
+
+// ServerConfig 服务器相关配置
+var ServerConfig serverConfig
+
+func initServer() {
+	utils.SetStructByJSON(&ServerConfig, jsonData["go"].(map[string]interface{}))
+	sep := string(os.PathSeparator)
+	execPath, _ := os.Getwd()
+	length := utf8.RuneCountInString(execPath)
+	lastChar := execPath[length-1:]
+	if lastChar != sep {
+		execPath = execPath + sep
+	}
+	if ServerConfig.UploadImgDir == "" {
+		pathArr := []string{"website", "static", "upload", "img"}
+		uploadImgDir := execPath + strings.Join(pathArr, sep)
+		ServerConfig.UploadImgDir = uploadImgDir
+	}
+
+	ymdStr := utils.GetTodayYMD("-")
+
+	if ServerConfig.LogDir == "" {
+		ServerConfig.LogDir = execPath
+	}else{
+		length := utf8.RuneCountInString(ServerConfig.LogDir)
+		lastChar := ServerConfig.LogDir[length-1:]
+		if lastChar != sep{
+			ServerConfig.LogFile = ServerConfig.LogDir+sep
+		}
+	}
+	ServerConfig.LogFile = execPath + ymdStr + ".log"
+}
+
+
+func init(){
+	initJSON()
+	initDB()
+	initRedis()
+	initServer()
+}
+

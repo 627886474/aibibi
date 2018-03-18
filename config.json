@@ -1,0 +1,33 @@
+{
+  "database":{
+    "Dialect":"mysql",
+    "Database":"go_project",
+    "User":"root",
+    "Password":"root",
+    "Charset":"utf8mb4",
+    /* 数据库地址 */
+    "Host":"127.0.0.1",
+    /*端口号*/
+    "Port":3306,
+    /*空闲时最大的连接数*/
+    "MaxIdleConns":5,
+    /*最大的连接数*/
+    "MaxOpenConns":10
+  },
+  "go":{
+    "Port"        :8000,
+    "APIPrefix"   :"/api",
+    "Env"         :"production",
+    "TokenSecret" :"Jxa26iOirBiYX8iLCJuYm5iy",
+    "TokenMaxAge" : 86400, /*token多久过期，单位秒*/
+    "MaxMultipartMemory":3,
+    "ImgPath"       :"/upload/img",
+    "PassSalt"      :"qpsocmd"    /* 密码加密*/
+  },
+  "redis":{
+    "Host"        :"127.0.0.1",
+    "Port"        :6379,
+    "MaxIdle"     :3,
+    "MaxActive"   :5
+  }
+}

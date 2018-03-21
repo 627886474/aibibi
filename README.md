@@ -1,7 +1,7 @@
 aibibi
 ======
 
-###项目简介
+### 项目简介
 aibibi基于go语言的gin框架，框架参考goalng123，目前只实现了一些api接口，
 可以帮助你用gin实现增、删、改、查。
 打算后期使用vue做前端渲染，等基本完成后再上线。
@@ -24,7 +24,8 @@ aibibi基于go语言的gin框架，框架参考goalng123，目前只实现了一
   - config.json  相关配置文件
   - main.go      项目启动文件
 - **启动项目**：
-新建一个zl文件夹,将项目移动至src/github.com下，使项目路径为{gopath}/src/github.com/zl/aibibi  
+新建一个zl文件夹,将项目移动至src/github.com下，使项目路径为{gopath}/src/github.com/zl/aibibi    
+
 `go run main.go`
 然后就可以通过postman请求了
 ![postman](image/2.png)

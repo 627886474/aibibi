@@ -1,0 +1,413 @@
+{
+	"id": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+	"name": "aibibi",
+	"description": "",
+	"order": [
+		"a555e796-2f70-0fdb-e216-219742757f86"
+	],
+	"folders": [
+		{
+			"name": "分类相关",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"order": [
+				"a435c425-a406-ebc1-0cfc-5e3dc63f68bd",
+				"2c90ab28-769a-5af1-f1c0-b5090e0fac61",
+				"3e7db6bb-c351-7053-10f7-03a3d2c6bee5",
+				"db804e1c-22aa-9324-ddf6-b243dabf9bab"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"auth": null,
+			"id": "1a00c6ae-cd74-4c39-d6cb-4436014458ec"
+		},
+		{
+			"name": "用户相关",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"order": [
+				"7dd2ff0e-27d3-331c-fd90-89420de913cf",
+				"699bbb3c-017e-b538-63de-775af0b3238e",
+				"a578c500-82fa-d230-08e5-4afae482316f"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"auth": null,
+			"id": "e1469459-6e41-2f1f-3524-047475ab4626"
+		},
+		{
+			"name": "话题相关",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"order": [
+				"1fe712da-61b8-5690-69ed-0dc5e16c2c73",
+				"b067851d-463e-3ed4-299f-d80b03ea0069"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"auth": null,
+			"id": "2974c32f-1fb6-8f85-0f8a-bbea0bfbfb50"
+		}
+	],
+	"folders_order": [
+		"e1469459-6e41-2f1f-3524-047475ab4626",
+		"1a00c6ae-cd74-4c39-d6cb-4436014458ec",
+		"2974c32f-1fb6-8f85-0f8a-bbea0bfbfb50"
+	],
+	"timestamp": 1519636944392,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "1fe712da-61b8-5690-69ed-0dc5e16c2c73",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/argue/add",
+			"folder": "1a00c6ae-cd74-4c39-d6cb-4436014458ec",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521602944906,
+			"name": "添加话题",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"name\":\"添加你的话题？\",\n\t\"describe\":\"你话题的描述\",\n\t\"category_id\":5,\n\t\"categories\":[{\n                \"id\": 5,\n                \"name\": \"技术类\",\n                \"is_hot\": 0,\n                \"followers\": \"1\"\n            }\n            ]\n}"
+		},
+		{
+			"id": "2c90ab28-769a-5af1-f1c0-b5090e0fac61",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/admin/v1/category/update",
+			"folder": "1a00c6ae-cd74-4c39-d6cb-4436014458ec",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521191390142,
+			"name": "更新话题分类",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"id\":1,\n\t\"name\":\"nike\",\n\t\"is_hot\":0,\n\t\"followers\": \"1\"\n}"
+		},
+		{
+			"id": "3e7db6bb-c351-7053-10f7-03a3d2c6bee5",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/category/info/1",
+			"folder": "1a00c6ae-cd74-4c39-d6cb-4436014458ec",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521191739824,
+			"name": "获取一个分类的详情",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"id\":1,\n\t\"name\":\"nike\",\n\t\"is_hot\":0,\n\t\"followers\": \"1\"\n}"
+		},
+		{
+			"id": "699bbb3c-017e-b538-63de-775af0b3238e",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6N30.z-p8sXV0IkUz9zu7Tm8jTGndfbQhJvDL5WXU_-UrJsc\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6N30.z-p8sXV0IkUz9zu7Tm8jTGndfbQhJvDL5WXU_-UrJsc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/user/update/sex",
+			"folder": "e1469459-6e41-2f1f-3524-047475ab4626",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1519812984964,
+			"name": "修改个人信息",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"sex\":1\n}"
+		},
+		{
+			"id": "7dd2ff0e-27d3-331c-fd90-89420de913cf",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/user/register",
+			"folder": "e1469459-6e41-2f1f-3524-047475ab4626",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521185066073,
+			"name": "用户注册",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"name\":\"科\",\n\t\"pass_word\":\"123456\",\n\t\"mobile\": \"13712340004\"\n}"
+		},
+		{
+			"id": "a435c425-a406-ebc1-0cfc-5e3dc63f68bd",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/admin/v1/category/add",
+			"folder": "e1469459-6e41-2f1f-3524-047475ab4626",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521540436137,
+			"name": "添加话题分类",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"name\":\"iphone\",\n\t\"is_hot\":0,\n\t\"followers\": \"1\"\n}"
+		},
+		{
+			"id": "a555e796-2f70-0fdb-e216-219742757f86",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/user/login",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1521602913981,
+			"name": "用户登陆",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"sigin_input\":\"科\",\n\t\"pass_word\":\"123456\"\n}"
+		},
+		{
+			"id": "a578c500-82fa-d230-08e5-4afae482316f",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6N30.z-p8sXV0IkUz9zu7Tm8jTGndfbQhJvDL5WXU_-UrJsc\n//user: 5\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6N30.z-p8sXV0IkUz9zu7Tm8jTGndfbQhJvDL5WXU_-UrJsc",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "user",
+					"value": "5",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "localhost:8000/api/v1/user/password/update",
+			"folder": "e1469459-6e41-2f1f-3524-047475ab4626",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1521540437663,
+			"name": "修改密码",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"pass\":\"12345678\",\n\t\"new_pwd\":\"123456\"\n}"
+		},
+		{
+			"id": "b067851d-463e-3ed4-299f-d80b03ea0069",
+			"headers": "Content-Type: application/json\ncookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cookie",
+					"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NX0.Ja4_X5UBSPW6zEL4a5_sjTHP4athqPSEKjP3NRjBo7U",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/argue/update/26",
+			"folder": "2974c32f-1fb6-8f85-0f8a-bbea0bfbfb50",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521602906167,
+			"name": "更新话题",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"name\":\"华为是否超越BA2222?\",\n\t\"describe\":\"顶顶顶顶222\",\n\t\"category_id\":7,\n\t\"categories\":[{\n                \"id\": 7,\n                \"name\": \"iphone\",\n                \"is_hot\": 0,\n                \"followers\": \"1\"\n            }\n            ]\n}"
+		},
+		{
+			"id": "db804e1c-22aa-9324-ddf6-b243dabf9bab",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8000/api/v1/category/list",
+			"folder": "1a00c6ae-cd74-4c39-d6cb-4436014458ec",
+			"queryParams": [],
+			"events": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"auth": null,
+			"time": 1521191786776,
+			"name": "获取所有分类",
+			"description": "",
+			"collectionId": "4f5de093-cc0a-76e9-f8b5-4a194cbc7b8a",
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"id\":1,\n\t\"name\":\"nike\",\n\t\"is_hot\":0,\n\t\"followers\": \"1\"\n}"
+		}
+	]
+}

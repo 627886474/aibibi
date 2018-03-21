@@ -21,7 +21,7 @@
     "TokenSecret" :"Jxa26iOirBiYX8iLCJuYm5iy",
     "TokenMaxAge" : 86400, /*token多久过期，单位秒*/
     "MaxMultipartMemory":3,
-    "ImgPath"       :"/upload/img",
+    "ImgPath"       :"/image",
     "PassSalt"      :"qpsocmd"    /* 密码加密*/
   },
   "redis":{

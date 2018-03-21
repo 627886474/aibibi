@@ -21,7 +21,10 @@ func Route(router *gin.Engine){
 			user.UpdatePassword)//修改密码
 		v1_api.GET("/category/info/:id", category.Info)//通过id获取一个分类的详情
 		v1_api.GET("/category/list", category.List)//获取所有分类
-		v1_api.POST("/argue/add",argue.Create)
+		v1_api.POST("/argue/add",middleware.SigninRequired,
+			argue.Create) //添加话题分类
+		v1_api.PUT("/argue/update/:id",middleware.SigninRequired,
+			argue.Update) //更新话题分类
 	}
 
 	v1_admin_api := router.Group(apiPrefix+"/admin/v1") //管理员访问的路由

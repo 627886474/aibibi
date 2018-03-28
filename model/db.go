@@ -61,7 +61,7 @@ func RegisterDB() (*gorm.DB, error) {
 		DB = db
 		db.SingularTable(true) // 如果设置为true,`User`的默认表名为`user`,使用`TableName`设置的表名不受影响
 		// 添加自动注册的表
-		db.AutoMigrate(&User{},&Category{},Argue{})
+		db.AutoMigrate(&User{},&Category{},Argue{},Talk{})
 		//修改表的结构
 		//db.Model(&User{}).ModifyColumn("role","int")
 		//db.Model(&Good{}).ModifyColumn("goods_id","int")

@@ -5,8 +5,6 @@ import (
 	"github.com/zl/aibibi/controller/common"
 	"github.com/zl/aibibi/model"
 	"net/http"
-	//"github.com/zl/aibibi/utils"
-	//"strings"
 	"fmt"
 	"strconv"
 )
@@ -107,7 +105,6 @@ func Save(c *gin.Context,isEdit bool){
 
 		}
 	}
-
 
 	c.JSON(http.StatusOK,gin.H{
 		"errorNo":model.ErrorCode.SUCCESS,

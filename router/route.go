@@ -7,6 +7,7 @@ import (
 	"github.com/zl/aibibi/controller/user"
 	"github.com/zl/aibibi/controller/category"
 	"github.com/zl/aibibi/controller/argue"
+	"github.com/zl/aibibi/controller/talk"
 )
 
 func Route(router *gin.Engine){
@@ -25,6 +26,10 @@ func Route(router *gin.Engine){
 			argue.Create) //添加话题分类
 		v1_api.PUT("/argue/update/:id",middleware.SigninRequired,
 			argue.Update) //更新话题分类
+		v1_api.POST("/talk/add",middleware.SigninRequired,
+			talk.Save) //添加评论
+		v1_api.PUT("/talk/up",middleware.SigninRequired,
+			talk.UP) //点赞评论
 	}
 
 	v1_admin_api := router.Group(apiPrefix+"/admin/v1") //管理员访问的路由

@@ -7,26 +7,21 @@ type Talk struct {
 	ID 			uint 		`gorm:"primary_key" json:"id"`
 	Content 		string 		`json:"content"` 		//辩论内容
 	Rank 		int 			`json:"rank"` 			//正方或者反方
-	Applaud 		int 			`json:"applaud"` 		//点赞或者差评
-	ArgueID 		int 			`json:"argue_id"`		//辩论话题的ID
+	ApplaudUp 	int 			`gorm:"default:0"` 		//点赞数
+	ApplaudDown 	int			`gorm:"default:0"` 	//差评数
+	ArgueID 		uint 			`json:"argue_id"`		//辩论话题的ID
 	Argues 		Argue				   				//辩论的内容对应一个话题
-	UserID 		uint 		`json:"user_id"`
+	UserID 		uint 								//不需要传userid,直接通过登录账号关联用户id
 	User 		User
 	CreatedAt 	time.Time
 	UpdatedAt 	time.Time
 	DeletedAt 	*time.Time
 }
 
-const (
-	//赞同
-	ApplaudUp = 0
-	//差评
-	ApplaudDown = 1
-)
 
 const(
 	//正方
-	Affirmative = 0
+	Affirmative = 1
 	//反方
-	Negative = 1
+	Negative = 2
 )

@@ -24,7 +24,7 @@ func main(){
 		gin.DefaultWriter = io.MultiWriter(logFile)
 	}
 	app :=gin.New()
-	app.Use(middleware.CORSMiddleware())
+	app.Use(middleware.CORSMiddleware())   //添加cors中间件，避免跨域问题
 	app.Use(gin.Logger())
 	app.Use(gin.Recovery())
 	router.Route(app)

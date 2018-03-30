@@ -9,6 +9,7 @@ import (
 	"io"
 	"github.com/zl/aibibi/router"
 	"github.com/zl/aibibi/config"
+	"github.com/zl/aibibi/controller/middleware"
 )
 
 func main(){
@@ -23,6 +24,7 @@ func main(){
 		gin.DefaultWriter = io.MultiWriter(logFile)
 	}
 	app :=gin.New()
+	app.Use(middleware.CORSMiddleware())
 	app.Use(gin.Logger())
 	app.Use(gin.Recovery())
 	router.Route(app)

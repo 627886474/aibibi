@@ -108,6 +108,10 @@ func UP(c *gin.Context) {
 
 	}
 	talk.ID = upData.ID
+	if err := model.DB.Debug().Find(&talk).Where("id = ?",talk.ID).Error;err !=nil{
+		SendErrJSON("error",c)
+		return
+	}
 
 	c.JSON(http.StatusOK,gin.H{
 		"errNo":model.ErrorCode.SUCCESS,

@@ -89,7 +89,7 @@ func Save(c *gin.Context,isEdit bool){
 			updateArgue.CategoryId = argueData.CategoryId
 			updateArgue.Categories = argueData.Categories
 
-			if err := model.DB.Debug().Model(&argue).Where("id = ?",id).Update(map[string]interface{}{
+			if err := model.DB.Model(&argue).Where("id = ?",id).Update(map[string]interface{}{
 				"name":updateArgue.Name,
 				"describe":updateArgue.Describe,
 				"category_id":updateArgue.CategoryId,

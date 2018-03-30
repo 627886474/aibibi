@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "s/jI3M5ZfkOD6WMFzZc1ndVPGNw=",
+			"path": "github.com/gin-gonic/gin",
+			"revision": "783c7ee9c14eac0e65b501664b4f553291556b43",
+			"revisionTime": "2018-01-26T03:46:11Z"
+		},
+		{
+			"checksumSHA1": "+C5xtTR8XG1rwSVunPPRANfYolY=",
+			"path": "github.com/microcosm-cc/bluemonday",
+			"revision": "542fd4642604d0d0c26112396ce5b1a9d01eee0b",
+			"revisionTime": "2017-12-22T15:26:07Z"
+		}
+	],
+	"rootPath": "github.com/zl/aibibi"
+}

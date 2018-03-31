@@ -1,0 +1,7 @@
+
+> demo@1.0.0 dev E:\jensen-proj\demo
+> webpack-dev-server --inline --progress --config build/webpack.dev.conf.js
+
+ DONE  Compiled successfully in 2595ms18:39:34
+
+ I  Your application is running here: http://localhost:8089

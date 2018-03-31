@@ -7,11 +7,12 @@ import (
 	"image/png"
 	"io"
 	"math/rand"
+
+
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"strconv"
-	"github.com/tommy351/gin-sessions"
 )
 
 const (
@@ -389,7 +390,11 @@ func NewLenChars(length int, chars []byte) string {
 	panic("unreachable")
 }
 
-func LoadVerify(c *gin.Context) {
+type Token struct {
+	Token string `json:"token"`
+}
+
+func LoadVerify(ctx *gin.Context) {
 	d := make([]byte, 4)
 	s :=NewLen(4)
 	ss := ""
@@ -398,17 +403,7 @@ func LoadVerify(c *gin.Context) {
 		d[v] %= 10
 		ss += strconv.FormatInt(int64(d[v]), 32)
 	}
-	session := sessions.Get(c)
-	session.Set("___verify",ss)
-	session.Save()
-	NewImage(d, 100, 40).WriteTo(c.Writer)
 
-}
+	NewImage(d, 100, 40).WriteTo(ctx.Writer)
 
-func CheckVerify(c *gin.Context,code string) bool{
-	session := sessions.Get(c)
-	v := session.Get("___verify")
-	session.Delete("___verify")
-	session.Save()
-	return v== code
 }

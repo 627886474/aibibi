@@ -8,3 +8,7 @@ const RegexpPhone = `^1[0-9]{10}$`
 
 //邮箱格式
 const RegexpEmail = `^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$`
+
+
+//验证码session
+const CaptchaSessionName = "__captcha__"

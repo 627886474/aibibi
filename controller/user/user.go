@@ -21,6 +21,7 @@ func Register(c *gin.Context){
 		Name 	string 	`json:"name" binding:"required"`
 		PassWord string	`json:"pass_word" binding:"required"`
 		Mobile 	string 	`json:"mobile" binding:"required"`
+		CaptchaId string `json:"captcha_id"`
 	}
 
 	var userData UserReqData

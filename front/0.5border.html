@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0.5border</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		._border{
+			margin-top: 50px;
+			height: 0.5px;
+			width: 100%;
+			background-color: #f00;
+			transform: scaleY(.5);
+			-webkit-transform: scaleY(.5);	/* Safari 和 Chrome */
+			transform-origin: 50%, 100%;
+			-webkit-transform-origin: 50%, 100%;	/* Safari 和 Chrome */
+		}
+	</style>
+</head>
+<body >
+	<div class="_border"></div>
+</body>
+</html>

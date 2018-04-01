@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+
     <router-view/>
   </div>
 </template>
 
 <script>
+import View  from './components/View'
 export default {
   name: 'App'
 }

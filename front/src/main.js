@@ -4,16 +4,20 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import api from './api'
 import plugins from './plugins'
+import ElementUI from 'element-ui';
+// import View  from './components/View'
 import './directive'
 import './filter'
 
 Vue.config.productionTip = false
 
 // 全局注册
-Vue.use(api)
-Vue.use(plugins)
+Vue.use(plugins.api)
+Vue.use(plugins.bus)
+Vue.use(plugins.axios)
+Vue.use(ElementUI)
+// Vue.use(View)
 
 /* eslint-disable no-new */
 let $VM = new Vue({

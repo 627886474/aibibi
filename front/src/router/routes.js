@@ -1,8 +1,8 @@
 /*
 * @Author: jensen
 * @Date:   2018-03-28 14:46:22
-* @Last Modified by:   jensen
-* @Last Modified time: 2018-03-31 18:49:00
+* @Last Modified by:   yinhuajin
+* @Last Modified time: 2018-03-29 11:33:02
 */
 
 const routes = [
@@ -12,28 +12,20 @@ const routes = [
 		component: ()=>import("@/views/test")
 	},
 	{
-		path:"/brother",
-		name:"brother",
-		component: ()=>import("@/views/test/brother")
+		path:"/on",
+		name:"on",
+		component: ()=>import("@/views/test/on")
 	},
-
-  // 用户模块
 	{
 		path:"/user",
 		name:"user",
 		components: require("@/views/user")
 	},
-  {
-    path:"/register",
-    name:"register",
-    components: require("@/views/user/register")
-  },
-
-  // redirect
-  {
-    path: '*',
-    redirect: '/'
-  }
+	{
+		path:"/ensure",
+		name:"ensure",
+		components: require.ensure([],(require)=>{require("@/views/ensure")})
+	}
 ]
 
 export default routes

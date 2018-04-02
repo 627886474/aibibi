@@ -8,7 +8,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
- 
+
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -23,7 +23,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json', '.ts' , '.tsx'],
+    extensions: ['.js', '.vue', '.json', '.ts' , '.tsx' ,'.scss'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),

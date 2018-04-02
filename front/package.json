@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev --profile --inline --progress",
+    "start": "npm run dev",
     "build": "node build/build.js",
     "nuxt": "nuxt"
   },
@@ -47,6 +47,7 @@
     "pug": "^2.0.3",
     "pug-loader": "^2.3.0",
     "rimraf": "^2.6.0",
+    "sass-loader": "^6.0.7",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "ts-loader": "3.1.1",

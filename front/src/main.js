@@ -1,23 +1,22 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+
 import router from './router'
 import store from './store'
-import plugins from './plugins'
-import ElementUI from 'element-ui';
-// import View  from './components/View'
+import api from './api'
+import './plugins'
 import './directive'
 import './filter'
+import './components/Element'
+import App from './App'
+
 
 Vue.config.productionTip = false
+window.Vue = Vue
 
 // 全局注册
-Vue.use(plugins.api)
-Vue.use(plugins.bus)
-Vue.use(plugins.axios)
-Vue.use(ElementUI)
-// Vue.use(View)
+Vue.use(api)
 
 /* eslint-disable no-new */
 let $VM = new Vue({
@@ -27,7 +26,9 @@ let $VM = new Vue({
   components: { App },
   template: '<App/>'
 })
- window.VM = $VM
- window.Vue = Vue
-// Object.assign(window,{VM: $VM})
+
+// vender window
+Object.assign(window, {VM: $VM})
+
+
 

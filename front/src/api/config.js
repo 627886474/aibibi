@@ -2,7 +2,7 @@
 * @Author: jensen
 * @Date:   2018-03-30 10:09:51
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-03-31 18:58:41
+* @Last Modified time: 2018-04-02 10:32:11
 */
 
 
@@ -23,8 +23,9 @@ const baseUrl = isPro ? ip.proUrl : ip.devUrl
 
 // config base
 axios.create({
-	baseUrl,
-	timeout: isPro? 3*1000 : 10*1000
+	baseURL:baseUrl,
+	timeout: isPro? 3*1000 : 10*1000,
+	// headers:''
 })
 
 // cross domain request  should carry cookie
@@ -35,7 +36,8 @@ axios
 	.interceptors
 	.request
 	.use( config => {
-		Object.assign(config.headers, {'Content-Type': 'application/json;charset=UTF-8'}, CONST_HEADER())
+		config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+		Object.assign(config.headers, CONST_HEADER())
 		return config
 	}, error => {
 		return Promise.inject(error)
@@ -47,7 +49,8 @@ axios
 	.response
 	.use( response => {
     console.log(response)
-		return Promise.resolve(response)
+    const res = response.data
+    return res
 	}, error => {
 		return Promise.inject(error)
 	})

@@ -8,7 +8,7 @@ import api from './api'
 import './plugins'
 import './directive'
 import './filter'
-import './components/Element'
+import './venders'
 import App from './App'
 
 

@@ -26,6 +26,7 @@ export default {
   },
   // hook
   async created() {
+
     await this.register()
     // console.log('确认是否异步')
     

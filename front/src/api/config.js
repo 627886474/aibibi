@@ -2,13 +2,13 @@
 * @Author: jensen
 * @Date:   2018-03-30 10:09:51
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-04-04 11:15:27
+* @Last Modified time: 2018-04-04 11:46:15
 */
 
 
 import axios from 'axios'
 import Promise from 'es6-promise'
-import { CONST_HEADER }  from './common'
+import { CONST_HEADER }  from './default'
 
 
 // get env  and set env ip
@@ -18,14 +18,9 @@ const ip = {
   devUrl: '//47.104.195.175:8000/api/v1',
 }
 
-const baseUrl = isPro ? ip.proUrl : ip.devUrl
-
-// config base
-const http = axios.create({
-	baseURL:baseUrl,
-	timeout: isPro? 3*1000 : 10*1000,
-	// headers:''
-})
+// config defaults
+axios.defaults.baseURL = isPro? ip.proUrl : ip.devUrl
+axios.defaults.timeout = isPro? 3*1000 : 10*1000
 
 // cross domain request  should carry cookie
 // axios.default.withCredentials = true
@@ -37,7 +32,7 @@ axios
 	.use( config => {
 		config.headers['Content-Type'] = 'application/json;charset=UTF-8'
 		Object.assign(config.headers, CONST_HEADER())
-		return config
+		return Promise.resolve(config)
 	}, error => {
 		return Promise.inject(error)
 	})
@@ -47,11 +42,8 @@ axios
 	.interceptors
 	.response
 	.use( response => {
-    console.log(response)
-    const res = response.data
-    return res
+    let res = response.data
+    return Promise.resolve(res)
 	}, error => {
 		return Promise.inject(error)
 	})
-
-export default http

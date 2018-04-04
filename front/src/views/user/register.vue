@@ -19,7 +19,8 @@ export default {
         pass_word: '123456', // [string]  密码
         mobile: '13712340004', // [string]  手机号
       })
-      console.log('注册接口返回:' + res)
+      console.log('注册接口返回:' , res)
+
     }
     
   },

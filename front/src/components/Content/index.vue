@@ -9,7 +9,7 @@
     name: 'mycontent',
     data(){
       return {
-        onmsg:'fadf'
+        onmsg:'fadf第一次发布'
       }
     },
     mounted(){

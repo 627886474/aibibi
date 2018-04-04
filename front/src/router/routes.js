@@ -2,12 +2,12 @@
 * @Author: jensen
 * @Date:   2018-03-28 14:46:22
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-03-31 18:49:00
+* @Last Modified time: 2018-04-02 18:19:05
 */
 
 const routes = [
 	{
-		path:"/",
+		path:"/test",
 		name:"test",
 		component: ()=>import("@/views/test")
 	},
@@ -21,18 +21,18 @@ const routes = [
 	{
 		path:"/user",
 		name:"user",
-		components: require("@/views/user")
+		component: () => import("@/views/user")
 	},
   {
     path:"/register",
     name:"register",
-    components: require("@/views/user/register")
+    component: () => import("@/views/user/register")
   },
 
   // redirect
   {
     path: '*',
-    redirect: '/'
+    redirect: '/register'
   }
 ]
 

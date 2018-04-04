@@ -2,41 +2,37 @@
 * @Author: jensen
 * @Date:   2018-03-30 10:09:51
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-03-31 18:58:41
+* @Last Modified time: 2018-04-04 13:29:50
 */
 
 
 import axios from 'axios'
 import Promise from 'es6-promise'
-import { CONST_HEADER }  from './common'
+import { CONST_HEADER }  from './default'
 
 
 // get env  and set env ip
 const isPro = process.env.NODE_ENV == 'production'
 const ip = {
-  proUrl: '//192.168.0.106:8000/api/v1',
-  devUrl: '//192.168.0.106:8000/api/v1',
+  proUrl: '//47.104.195.175:8000/api/v1',
+  devUrl: '//47.104.195.175:8000/api/v1',
 }
 
-const baseUrl = isPro ? ip.proUrl : ip.devUrl
-
-
-// config base
-axios.create({
-	baseUrl,
-	timeout: isPro? 3*1000 : 10*1000
-})
-
+// config defaults    --add property to  defaults 
+axios.defaults.baseURL = isPro? ip.proUrl : ip.devUrl
+axios.defaults.timeout = isPro? 3*1000 : 10*1000
+// axios.defaults.baseURL = 'http://172.16.4.7:8980'
 // cross domain request  should carry cookie
-// axios.default.withCredentials = true
+// axios.defaults.withCredentials = true
 
 // intercepte request
 axios
 	.interceptors
 	.request
 	.use( config => {
-		Object.assign(config.headers, {'Content-Type': 'application/json;charset=UTF-8'}, CONST_HEADER())
-		return config
+		config.headers['Content-Type'] = 'application/json;charset=UTF-8'
+		Object.assign(config.headers, CONST_HEADER())
+		return Promise.resolve(config)
 	}, error => {
 		return Promise.inject(error)
 	})
@@ -46,8 +42,8 @@ axios
 	.interceptors
 	.response
 	.use( response => {
-    console.log(response)
-		return Promise.resolve(response)
+    let res = response.data
+    return Promise.resolve(res)
 	}, error => {
 		return Promise.inject(error)
 	})

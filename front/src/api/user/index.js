@@ -2,10 +2,10 @@
 * @Author: jensen
 * @Date:   2018-03-30 11:26:00
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-03-31 18:45:54
+* @Last Modified time: 2018-04-04 11:15:07
 */
 
-import axios from 'axios'
+import http from './../config'
 
 
 export default {
@@ -14,6 +14,6 @@ export default {
     // pass_word: '123456',               // [string]  密码
     // mobile: '13712340004',             // [string]  手机号
 	}){
-		return axios.post( '/user/register', args)
+		return http.post( '/user/register', args)
 	}
 }

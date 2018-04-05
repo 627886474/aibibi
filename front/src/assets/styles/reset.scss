@@ -1,0 +1,86 @@
+// Created by cycold@qq.com on 2017-03-31.
+
+html {
+  text-size-adjust: 100%; //解决 iPhone 横屏时默认会放大文字的问题
+}
+html, body {
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-style: normal;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+img { border: 0; }
+
+ul, li, ol { list-style: none; }
+
+small, strong, i, em, var, cite, address, img, label {
+  font-style: normal;
+}
+
+b { font-weight: bold;}
+h1,h2,h3,h4,h5,h6,strong { font-weight: normal; }
+
+h1 { font-size: 18px; }
+h2 { font-size: 17px; }
+h3 { font-size: 16px; }
+h4 { font-size: 15px; }
+h5 { font-size: 14px; }
+h6 { font-size: 13px; }
+small { font-size: 12px; }
+
+code, kbd, pre, samp {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  line-height: 2;
+  display: block;
+}
+
+svg:not(:root) { overflow: hidden; }
+
+[hidden] { display: none !important; }
+

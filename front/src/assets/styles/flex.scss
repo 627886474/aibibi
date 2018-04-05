@@ -1,0 +1,87 @@
+// Created by cycold@qq.com on 2016-05-11.
+
+._flex,
+._flex-vc,
+._flex-hc,
+._flex-vhc {
+  display: flex;
+}
+
+// 某些手机在flex容器的伸缩项目display:inline-block时会失效,
+// 出现某些奇怪的问题(UC space-between 时,需要display: block)
+._flex > *,
+._flex-vc > * ,
+._flex-vh > *,
+._flex-vhc > * {
+  display: block;
+}
+
+// 避免被block重写
+._flex > ._flex,
+._flex > ._flex-vc,
+._flex > ._flex-hc,
+._flex > ._flex-vhc,
+._flex-vc > ._flex,
+._flex-vc > ._flex-vc,
+._flex-vc > ._flex-hc,
+._flex-vc > ._flex-vhc,
+._flex-hc > ._flex,
+._flex-hc > ._flex-vc,
+._flex-hc > ._flex-hc,
+._flex-hc > ._flex-vhc,
+._flex-vhc > ._flex,
+._flex-vhc > ._flex-vc,
+._flex-vhc > ._flex-hc,
+._flex-vhc > ._flex-vhc {
+  display: flex;
+}
+
+
+._flex-vc,
+._flex-vhc {
+  align-items: center;
+}
+
+._flex-hc,
+._flex-vhc {
+  justify-content: center;
+}
+
+._flex-item { flex: 1; }
+._flex-none { flex: none; }
+
+._flex-h-end {
+  justify-content: flex-end;
+}
+._flex-h-start {
+  justify-content: flex-start;
+}
+._flex-h-space-between {
+  justify-content: space-between;
+}
+._flex-h-space-around {
+  justify-content: space-around;
+}
+
+._flex-v-start {
+  align-items: flex-start;
+}
+._flex-v-end {
+  align-items: flex-end;
+}
+._flex-v-stretch {
+  align-items: stretch;
+}
+
+._flex-column {
+  flex-direction: column;
+}
+
+._flex-row {
+  flex-direction: row;
+}
+
+._flex-row-reverse { flex-direction: row-reverse; }
+._flex-column-reverse { flex-direction: column-reverse; }
+._flex-wrap { flex-wrap: wrap; }
+._flex-nowrap { flex-wrap: nowrap; }

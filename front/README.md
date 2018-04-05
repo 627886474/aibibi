@@ -1,25 +1,28 @@
-# demo
+# bilibili
 
-> A Vue.js project
+> bilibili基于轻量级MVVM框架Vue进行开发，目的在于积累迭代构建一个完整的vue生态架构，---that is，不断完善抽调优化
+
+## Description
+
+> 基于vue-cli脚手架构建
+> 采用vue2.0 + axios + vuex + vue-router全家桶开发
+> 选用element-ui组件
 
 ## Build Setup
 
 ``` bash
 # install dependencies
-yarn install
-
-(ps:如果报错node-sass相关问题，to run: SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass npm rebuild node-sass)
+- yarn install 或者 npm install
+(ps:如果报错node-sass相关问题,sudo: SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass npm rebuild node-sass)
 
 
 # serve with hot reload at localhost:8989
-yarn start
+- yarn start 或者 npm run start
 
 
 # build for production with minification
-yarn build
+- yarn build 或者 npm run build
 
-# build for production and view the bundle analyzer report
-yarn build --report
 ```
 
 ## Structure

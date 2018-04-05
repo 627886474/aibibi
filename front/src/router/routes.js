@@ -2,7 +2,7 @@
 * @Author: jensen
 * @Date:   2018-03-28 14:46:22
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-04-05 13:44:22
+* @Last Modified time: 2018-04-05 16:13:52
 */
 
 const routes = [
@@ -16,6 +16,14 @@ const routes = [
 		name:"brother",
 		component: ()=>import("@/views/test/brother")
 	},
+
+  // 首页
+  {
+    path:"/overview",
+    name:"overview",
+    component: () => import("@/views/overview")
+  },
+
 
   // 用户模块
 	{
@@ -32,6 +40,11 @@ const routes = [
     path:"/login",
     name:"login",
     component: () => import("@/views/user/login")
+  },
+  {
+    path:"/forget",
+    name:"forget",
+    component: () => import("@/views/user/forget")
   },
 
   // redirect

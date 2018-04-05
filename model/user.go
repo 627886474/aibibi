@@ -17,8 +17,8 @@ type User struct{
 	PassWord 		string 		`json:"-"`
 	Birthday 		time.Time	`gorm:"default:null" json:"birthday"`
 	Sex 				int 	 		`json:"sex"`
-	Mobile 			string  		`json:"mobile"`
-	Email 			string 		`gorm:"default:null" json:"email"`
+	Mobile 			string  		`gorm:"default:null" json:"mobile"`
+	Email 			string 		`json:"email"`
 	Role 			int 			`json:"role"`  //用户角色
 	CreatedAt 		time.Time
 	UpdatedAt 		time.Time

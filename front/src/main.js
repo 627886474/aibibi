@@ -9,6 +9,7 @@ import './plugins'
 import './directive'
 import './filter'
 import './venders'
+import './assets/styles'
 import App from './App'
 
 

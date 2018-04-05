@@ -2,7 +2,7 @@
 * @Author: jensen
 * @Date:   2018-03-30 10:09:51
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-04-04 13:29:50
+* @Last Modified time: 2018-04-05 13:37:38
 */
 
 
@@ -18,7 +18,7 @@ const ip = {
   devUrl: '//47.104.195.175:8000/api/v1',
 }
 
-// config defaults    --add property to  defaults 
+// config defaults    --add property to  defaults
 axios.defaults.baseURL = isPro? ip.proUrl : ip.devUrl
 axios.defaults.timeout = isPro? 3*1000 : 10*1000
 // axios.defaults.baseURL = 'http://172.16.4.7:8980'

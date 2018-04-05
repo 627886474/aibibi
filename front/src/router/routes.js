@@ -2,7 +2,7 @@
 * @Author: jensen
 * @Date:   2018-03-28 14:46:22
 * @Last Modified by:   jensen
-* @Last Modified time: 2018-04-02 18:19:05
+* @Last Modified time: 2018-04-05 13:44:22
 */
 
 const routes = [
@@ -28,11 +28,16 @@ const routes = [
     name:"register",
     component: () => import("@/views/user/register")
   },
+  {
+    path:"/login",
+    name:"login",
+    component: () => import("@/views/user/login")
+  },
 
   // redirect
   {
     path: '*',
-    redirect: '/register'
+    redirect: '/login'
   }
 ]
 

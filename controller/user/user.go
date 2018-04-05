@@ -20,8 +20,8 @@ func Register(c *gin.Context){
 	type UserReqData struct{
 		Name 	string 	`json:"name" binding:"required"`
 		PassWord string	`json:"pass_word" binding:"required"`
-		Mobile 	string 	`json:"mobile" binding:"required"`
-		CaptchaId string `json:"captcha_id"`
+		Email 	string 	`json:"email" binding:"required"`
+		//CaptchaId string `json:"captcha_id"`
 	}
 
 	var userData UserReqData
@@ -31,7 +31,7 @@ func Register(c *gin.Context){
 	}
 	userData.Name = utils.AvoidXSS(userData.Name) //避免xss攻击
 	userData.Name = strings.TrimSpace(userData.Name) //消除空格
-	userData.Mobile = strings.TrimSpace(userData.Mobile)
+	userData.Email = strings.TrimSpace(userData.Email)
 
 	if strings.Index(userData.Name,"@") != -1{
 		SendErrJSON("昵称不能包含@符号",c)
@@ -41,26 +41,31 @@ func Register(c *gin.Context){
 		SendErrJSON("昵称格式不正确",c)
 		return
 	}
-	if ok,err := regexp.MatchString(config.RegexpPhone,userData.Mobile);userData.Mobile == "" || !ok || err !=nil{
-		SendErrJSON("手机格式不正确",c)
+	if ok,err := regexp.MatchString(config.RegexpEmail,userData.Email);userData.Email == "" || !ok || err !=nil{
+		SendErrJSON("邮箱不正确",c)
 		return
 	}
 
+	//v, ok := c.GetSession(config.CaptchaSessionName).(string)
+	//if !ok || !strings.EqualFold(v, captcha) {
+	//	c.JsonResult(6001, "验证码不正确")
+	//}
+
 	var user model.User
-	if err :=model.DB.Where("name = ? OR mobile = ?",userData.Name,userData.Mobile).Find(&user).Error;err ==nil{
+	if err :=model.DB.Where("name = ? OR mobile = ?",userData.Name,userData.Email).Find(&user).Error;err ==nil{
 		if user.Name == userData.Name{
 			SendErrJSON("昵称已被占用",c)
 			return
 		}
-		if user.Mobile == userData.Mobile{
-			SendErrJSON("手机号已注册",c)
+		if user.Mobile == userData.Email{
+			SendErrJSON("邮箱已注册",c)
 			return
 		}
 	}
 
 	var newUser model.User
 	newUser.Name = userData.Name
-	newUser.Mobile = userData.Mobile
+	newUser.Email = userData.Email
 	newUser.Role = model.UserRoleNormal     //默认为 普通用户   1
 	newUser.Sex = model.UserSexMale    	  //默认为  男性     0
 	newUser.PassWord = newUser.EncryptPassword(userData.PassWord,newUser.Salt())
@@ -190,7 +195,7 @@ func UpdatePassword(c *gin.Context){
 //用户登录
 func Signin(c *gin.Context){
 	SendErrJSON :=common.SendErrJSON
-	type MobileNameLogin struct {
+	type EmailLogin struct {
 		SigninInput 	string `json:"signin_input" binding:"required"`
 		Password 	string `json:"password" binding:"required,min=6,max=20"`
 	}
@@ -199,21 +204,21 @@ func Signin(c *gin.Context){
 		PassWord 	string `json:"pass_word" binding:"required,min=6,max=20"`
 	}
 
-	var mobileLogin MobileNameLogin
+	var emailLogin EmailLogin
 	var usernameLogin UserNameLogin
 	var signinInput string
 	var passWord string
 	var sql string
 
 	if c.Query("loginType") =="mobile"{
-		if err :=c.ShouldBindWith(&mobileLogin,binding.JSON);err !=nil{
+		if err :=c.ShouldBindWith(&emailLogin,binding.JSON);err !=nil{
 			fmt.Println(err.Error())
-			SendErrJSON("手机或密码错误",c)
+			SendErrJSON("邮箱或密码错误",c)
 			return
 		}
-		signinInput = mobileLogin.SigninInput
-		passWord = mobileLogin.Password
-		sql = "mobile = ?"
+		signinInput = emailLogin.SigninInput
+		passWord = emailLogin.Password
+		sql = "email = ?"
 		//}else if c.Query("loginType") == "username"{  //通过前端传递的参数判断登陆方式，这里模拟接口请求直接name登陆
 	}else {
 		if err :=c.ShouldBindWith(&usernameLogin,binding.JSON);err !=nil{

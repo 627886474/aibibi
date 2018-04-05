@@ -196,43 +196,44 @@ func UpdatePassword(c *gin.Context){
 func Signin(c *gin.Context){
 	SendErrJSON :=common.SendErrJSON
 	type EmailLogin struct {
-		SigninInput 	string `json:"signin_input" binding:"required"`
+		SigninInput 	string `json:"sigin_input" binding:"required"`
 		Password 	string `json:"password" binding:"required,min=6,max=20"`
 	}
-	type UserNameLogin struct {
-		SigninInput 	string `json:"sigin_input" binding:"required"`
-		PassWord 	string `json:"pass_word" binding:"required,min=6,max=20"`
-	}
+	//type UserNameLogin struct {
+	//	SigninInput 	string `json:"sigin_input" binding:"required"`
+	//	PassWord 	string `json:"pass_word" binding:"required,min=6,max=20"`
+	//}
 
 	var emailLogin EmailLogin
-	var usernameLogin UserNameLogin
+	//var usernameLogin UserNameLogin
 	var signinInput string
 	var passWord string
 	var sql string
 
-	if c.Query("loginType") =="mobile"{
-		if err :=c.ShouldBindWith(&emailLogin,binding.JSON);err !=nil{
-			fmt.Println(err.Error())
-			SendErrJSON("邮箱或密码错误",c)
-			return
-		}
-		signinInput = emailLogin.SigninInput
-		passWord = emailLogin.Password
-		sql = "email = ?"
-		//}else if c.Query("loginType") == "username"{  //通过前端传递的参数判断登陆方式，这里模拟接口请求直接name登陆
-	}else {
-		if err :=c.ShouldBindWith(&usernameLogin,binding.JSON);err !=nil{
-			fmt.Println(err.Error())
-			SendErrJSON("用户名或密码错误",c)
-			return
-		}
-		signinInput = usernameLogin.SigninInput
-		passWord = usernameLogin.PassWord
-		sql = "name = ?"
+	//if c.Query("loginType") =="mobile"{
+	if err :=c.ShouldBindWith(&emailLogin,binding.JSON);err !=nil{
+		fmt.Println(err.Error())
+		SendErrJSON("参数错误",c)
+		return
 	}
 
+	signinInput = emailLogin.SigninInput
+	passWord = emailLogin.Password
+	sql = "email = ?"
+		//}else if c.Query("loginType") == "username"{  //通过前端传递的参数判断登陆方式，这里模拟接口请求直接name登陆
+	//}else {
+	//	if err :=c.ShouldBindWith(&usernameLogin,binding.JSON);err !=nil{
+	//		fmt.Println(err.Error())
+	//		SendErrJSON("用户名或密码错误",c)
+	//		return
+	//	}
+	//	signinInput = usernameLogin.SigninInput
+	//	passWord = usernameLogin.PassWord
+	//	sql = "name = ?"
+	//}
+
 	var user model.User
-	if err := model.DB.Where(sql,signinInput).First(&user).Error;err !=nil{
+	if err := model.DB.Debug().Where(sql,signinInput).First(&user).Error;err !=nil{
 		SendErrJSON("账户不存在",c)
 		return
 	}

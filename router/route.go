@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/zl/aibibi/controller/middleware"
+	"github.com/zl/aibibi/middleware"
 	"github.com/zl/aibibi/config"
 	"github.com/zl/aibibi/controller/user"
 	"github.com/zl/aibibi/controller/category"

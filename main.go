@@ -9,7 +9,7 @@ import (
 	"io"
 	"github.com/zl/aibibi/router"
 	"github.com/zl/aibibi/config"
-	"github.com/zl/aibibi/controller/middleware"
+	"github.com/zl/aibibi/middleware"
 )
 
 func main(){

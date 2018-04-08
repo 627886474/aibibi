@@ -35,5 +35,5 @@ aibibi基于go语言的gin框架，框架参考goalng123，目前只实现了一
 `go run main.go`
 然后就可以通过postman请求了
 ![postman](image/2.png)
-### 贡献者列表
+### 前端合伙人
 [Jensen](https://github.com/jensen5201)

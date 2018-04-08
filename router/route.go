@@ -16,6 +16,7 @@ func Route(router *gin.Engine){
 	{
 		v1_api.POST("/user/register",user.Register)  //注册
 		v1_api.GET("/captch",middleware.LoadVerify)//验证码
+		//v1_api.GET("/captch2",middleware.CaptchaController{}.Server)
 		v1_api.POST("/user/login",user.Signin)//登录
 		v1_api.PUT("/user/update/:field",middleware.SigninRequired,
 			user.UpdateInfo) //修改用户信息

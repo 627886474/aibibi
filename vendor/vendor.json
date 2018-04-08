@@ -3,6 +3,12 @@
 	"ignore": "",
 	"package": [
 		{
+			"checksumSHA1": "rkgJN3y7kDId0MMRCZDELa812hQ=",
+			"path": "github.com/dchest/captcha",
+			"revision": "6a29415a8364ec2971fdc62d9e415ed53fc20410",
+			"revisionTime": "2017-06-22T15:38:21Z"
+		},
+		{
 			"checksumSHA1": "v+H/cD17kjyZLCVSVc4hVle+Ydw=",
 			"path": "github.com/gin-gonic/gin/binding/example",
 			"revision": "783c7ee9c14eac0e65b501664b4f553291556b43",
@@ -97,6 +103,18 @@
 			"path": "github.com/tommy351/gin-sessions",
 			"revision": "353060947eb6549deb9e15229c73ed37931acf5f",
 			"revisionTime": "2015-06-17T14:18:53Z"
+		},
+		{
+			"checksumSHA1": "xxPcaE+j0fbGH20f5uv9aAMSeGY=",
+			"path": "github.com/v2pro/plz/concurrent",
+			"revision": "8ffd0413fb327a82905ccc7b73fc5ca8435c067c",
+			"revisionTime": "2018-02-27T03:29:29Z"
+		},
+		{
+			"checksumSHA1": "WJzTdu9MIEOB0Iu2DJRbsoLx4I4=",
+			"path": "github.com/v2pro/plz/reflect2",
+			"revision": "8ffd0413fb327a82905ccc7b73fc5ca8435c067c",
+			"revisionTime": "2018-02-27T03:29:29Z"
 		},
 		{
 			"checksumSHA1": "wRLo86qqt/7IwI8X43IjXLvveU0=",

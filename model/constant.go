@@ -12,4 +12,14 @@ const(
 const(
 	//用户信息
 	LoginUser = "loginUser"
+	//resettime 重置密码的链接
+	ResetTime = "resetTime"
+	//ArgueMinuteLimit 每分钟最多能发表的话题数
+	ArgueMinuteLimit = "argueMinuteLimit"
+	//ArgueDayLimit 每分钟最多能发表的话题数
+	ArgueDayLimit = "argueDayLimit"
+	//TalkMinuteLimit 每分钟最多能发表的话题数
+	TalkMinuteLimit = "talkMinuteLimit"
+	//TalkDayLimit 每分钟最多能发表的话题数
+	TalkDayLimit = "talkDayLimit"
 )

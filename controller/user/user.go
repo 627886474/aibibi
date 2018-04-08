@@ -12,7 +12,175 @@ import (
 	"github.com/gin-gonic/gin/binding"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
+	"strconv"
+	"errors"
+	"github.com/garyburd/redigo/redis"
+	"crypto/md5"
+	"github.com/zl/aibibi/controller/mail"
+	"time"
 )
+
+const(
+	resetDuration = 24*60*60
+)
+
+//邮件格式
+func sendMail(action string,title string,curTime int64,user model.User,c *gin.Context){
+	siteName := config.ServerConfig.SiteName
+	sitURL := "http://"+config.ServerConfig.Host
+	secretStr := fmt.Sprintf("%d%s%s",curTime,user.Email,user.PassWord)
+	secretStr = fmt.Sprintf("%x",md5.Sum([]byte(secretStr)))
+	actionURL := sitURL +action+"/%d/%s"
+
+	actionURL = fmt.Sprintf(actionURL,user.ID,secretStr)
+	fmt.Println(actionURL)
+
+	content := "<p><b>亲爱的" + user.Name + ":</b></p>" +
+		"<p>我们收到您在 " + siteName + " 的注册信息, 请点击下面的链接, 或粘贴到浏览器地址栏来激活帐号.</p>" +
+		"<a href=\"" + actionURL + "\">" + actionURL + "</a>" +
+		"<p>如果您没有在 " + siteName + " 填写过注册信息, 说明有人滥用了您的邮箱, 请删除此邮件, 我们对给您造成的打扰感到抱歉.</p>" +
+		"<p>" + siteName + " 谨上.</p>"
+
+	if action == "/reset" {
+		content = "<p><b>亲爱的" + user.Name + ":</b></p>" +
+			"<p>你的密码重设要求已经得到验证。请点击以下链接, 或粘贴到浏览器地址栏来设置新的密码: </p>" +
+			"<a href=\"" + actionURL + "\">" + actionURL + "</a>" +
+			"<p>感谢你对" + siteName + "的支持，希望你在" + siteName + "的体验有益且愉快。</p>" +
+			"<p>(这是一封自动产生的email，请勿回复。)</p>"
+	}
+	content += "<p><img src=\"" + sitURL + "/images/logo.png\" style=\"height: 42px;\"/></p>"
+	//fmt.Println(content)
+
+	mail.SendMail(user.Email, title, content)
+}
+//校验链接地址
+func verifyLink(cacheKey string,c *gin.Context)(model.User,error){
+	var user model.User
+	userID,err :=strconv.Atoi(c.Param("id"))
+	if err !=nil ||userID <=0{
+		return user,errors.New("无效链接")
+	}
+	secrect := c.Param("secret")
+	if secrect ==""{
+		return user,errors.New("无效的链接")
+	}
+
+	RedisConn := model.RedisPool.Get()
+	defer RedisConn.Close()
+
+	emailTime,redisErr := redis.Int64(RedisConn.Do("GET",cacheKey+fmt.Sprintf("%d", userID)))
+	if redisErr !=nil{
+		return user,errors.New("无效链接")
+	}
+	if err := model.DB.First(&user,userID).Error;err !=nil{
+		return user,errors.New("无效链接")
+	}
+
+	secrectStr := fmt.Sprintf("%d%s",emailTime,user.Email)
+	secrectStr = fmt.Sprintf("%x",md5.Sum([]byte(secrectStr)))
+	if secrect != secrectStr{
+		fmt.Println(secrect,secrectStr)
+		return user,errors.New("无效链接")
+	}
+	return user,nil
+
+}
+
+//重置密码
+func ResetPassword(c *gin.Context){
+	SendErrJSON :=common.SendErrJSON
+	type UserReqData struct {
+		Password  string 	`json:"password" binding:"required,min=6,max=20"`
+	}
+	var userData UserReqData
+
+	if err:=c.ShouldBindJSON(&userData);err !=nil{
+		SendErrJSON("参数无效",c)
+		return
+	}
+	var verifyErr error
+	var user model.User
+	if user,verifyErr =verifyLink(model.ResetTime,c);verifyErr !=nil{
+		SendErrJSON("重置链接已失效",c)
+		return
+	}
+
+	user.PassWord = user.EncryptPassword(userData.Password,user.Salt())
+
+	if user.ID <=0{
+		SendErrJSON("重置链接已失效",c)
+		return
+	}
+	if err := model.DB.Model(&user).Update("pass_word",user.PassWord).Error;err!=nil{
+		SendErrJSON("error",c)
+	}
+
+	redisConn :=model.RedisPool.Get()
+	defer redisConn.Close()
+	if _,err:= redisConn.Do("DEL",fmt.Sprintf("%s%d",model.ResetTime,user.ID));err!=nil{
+		SendErrJSON("redis delete failed",err)
+	}
+
+	c.JSON(http.StatusOK,gin.H{
+		"errNo": model.ErrorCode.SUCCESS,
+		"msg":   "success",
+		"data":  gin.H{},
+	})
+}
+
+//重置密码的邮件
+func ResetPasswordMail(c *gin.Context){
+	SendErrJSON := common.SendErrJSON
+	type UserReqData struct {
+		Email 		string 	`json:"email" binding:"required,email"`
+	}
+	var userData UserReqData
+	if err := c.ShouldBindJSON(&userData);err != nil{
+		SendErrJSON("无效的邮箱",c)
+		return
+	}
+
+	var user model.User
+	if err := model.DB.Where("email=?",userData.Email).Find(&user).Error;err !=nil{
+		SendErrJSON("没有邮箱为"+user.Email+"的用户",c)
+		return
+	}
+	cureTime := time.Now().Unix()
+	resetUser := fmt.Sprintf("%s%d",model.ResetTime,user.ID)
+
+	RedisConn := model.RedisPool.Get()
+	defer RedisConn.Close()
+
+	if _,err :=RedisConn.Do("SET",resetUser,cureTime,"EX",resetDuration);err !=nil{
+		SendErrJSON("redis set failed",c)
+		return
+	}
+
+	go func() {
+		sendMail("/ac","修改密码",cureTime,user,c)
+	}()
+
+	c.JSON(http.StatusOK,gin.H{
+		"errNo":model.ErrorCode.SUCCESS,
+		"message":"success",
+		"data":gin.H{},
+	})
+}
+
+//验证重置密码的链接是否失效
+func VerifyResetPasswordLink(c *gin.Context){
+	SendErrJOSN := common.SendErrJSON
+	if _,err :=verifyLink(model.ResetTime,c);err !=nil{
+		fmt.Println(err.Error())
+		SendErrJOSN("重置链接已失效",c)
+		return
+	}
+	c.JSON(http.StatusOK,gin.H{
+		"errNo":model.ErrorCode.SUCCESS,
+		"msg":"sucess",
+		"data":gin.H{},
+	})
+}
 
 //用户注册
 func Register(c *gin.Context){
@@ -66,6 +234,7 @@ func Register(c *gin.Context){
 	var newUser model.User
 	newUser.Name = userData.Name
 	newUser.Email = userData.Email
+	newUser.AvatarURL = "/root/images/avatar/default.png"   //设置一个默认头像
 	newUser.Role = model.UserRoleNormal     //默认为 普通用户   1
 	newUser.Sex = model.UserSexMale    	  //默认为  男性     0
 	newUser.PassWord = newUser.EncryptPassword(userData.PassWord,newUser.Salt())

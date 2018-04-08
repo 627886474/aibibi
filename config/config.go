@@ -92,7 +92,7 @@ type serverConfig struct{
 	CrawlerName 			string
 	MailUser 			string //域名邮箱账号
 	MailPass				string //域名邮箱密码
-	MailHost				int	  //smtp邮箱域名
+	MailHost				string	  //smtp邮箱域名
 	MailPort 			int	  //smtp邮箱端口
 	MailForm				string//邮件来源
 

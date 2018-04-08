@@ -16,12 +16,16 @@ func Route(router *gin.Engine){
 	{
 		v1_api.POST("/user/register",user.Register)  //注册
 		v1_api.GET("/captch",middleware.LoadVerify)//验证码
-		//v1_api.GET("/captch2",middleware.CaptchaController{}.Server)
 		v1_api.POST("/user/login",user.Signin)//登录
 		v1_api.PUT("/user/update/:field",middleware.SigninRequired,
 			user.UpdateInfo) //修改用户信息
 		v1_api.PUT("/user/password/update",middleware.SigninRequired,
 			user.UpdatePassword)//修改密码
+
+		v1_api.POST("/reset/sendemail",user.ResetPasswordMail) //重置密码邮件
+		v1_api.POST("/reset/verify/:id/:secret",user.VerifyResetPasswordLink)//校验链接是否失效
+		v1_api.POST("reset/password/:id/:secrect",user.ResetPasswordMail)//重置密码的链接
+
 		v1_api.GET("/category/info/:id", category.Info)//通过id获取一个分类的详情
 		v1_api.GET("/category/list", category.List)//获取所有分类
 		v1_api.POST("/argue/add",middleware.SigninRequired,

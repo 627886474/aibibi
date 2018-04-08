@@ -20,6 +20,7 @@ type User struct{
 	Mobile 			string  		`gorm:"default:null" json:"mobile"`
 	Email 			string 		`json:"email"`
 	Role 			int 			`json:"role"`  //用户角色
+	AvatarURL 		string 		`json:"avatar_url"` //头像
 	CreatedAt 		time.Time
 	UpdatedAt 		time.Time
 }
